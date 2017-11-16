@@ -1,0 +1,16 @@
+---
+galaxy_info:
+  author: Ona Engineering
+  description: Modifies linux configuration with common changes to operate as a server
+  company: Ona Systems Inc.
+  license: Apache 2
+  min_ansible_version: 2.2
+  platforms:
+    - name: Ubuntu
+      verions:
+      - xenial
+      - trusty
+  categories:
+  - networking
+  - system
+  dependencies: []
