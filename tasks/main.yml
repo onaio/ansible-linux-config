@@ -11,7 +11,14 @@
     - { name: "net.ipv4.ip_local_port_range", value: "10000 65535"}
     - { name: "net.ipv4.tcp_rmem", value: "4096 87380 16777216" }
     - { name: "net.ipv4.tcp_wmem", value: "4096 16384 16777216" }
+
+- name: Update sysctl net settings
+  sysctl:
+    name: "{{ item.name }}"
+    value: "{{ item.value }}"
+  with_items:
     - { name: "net.ipv4.tcp_tw_recycle", value: 1 }
+  when: ansible_lsb.major_release < 18
 
 - name: Update limits.conf limits
   lineinfile:
