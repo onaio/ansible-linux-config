@@ -33,3 +33,14 @@
     - "* soft nofile 65535"
     - "* hard nproc 16384"
     - "* soft nproc 16384"
+
+- name: Update sysctl.conf limits
+  lineinfile:
+    dest: /etc/sysctl.conf
+    line: "{{ item }}"
+    state: present
+    insertafter: EOF
+    create: True
+  with_items:
+    - "vm.swappiness = 0"
+  when: linux_config_swap_off
