@@ -31,4 +31,4 @@
     - "* hard nofile 65535"
     - "* soft nofile 65535"
     - "* hard nproc 16384"
-    - "* hard nproc 16384"
+    - "* soft nproc 16384"
