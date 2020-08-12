@@ -45,3 +45,12 @@
   with_items:
     - "vm.swappiness = 0"
   when: linux_config_swap_off
+
+- name: Mount up device by UUID
+  mount:
+    path: /
+    src: LABEL=cloudimg-rootfs
+    fstype: ext4
+    opts: defaults,discard,noatime
+    state: present
+  when: linux_config_noatime
