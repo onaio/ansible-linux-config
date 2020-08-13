@@ -9,15 +9,17 @@
     - { name: "net.core.rmem_max", value: 16777216 }
     - { name: "net.core.wmem_max", value: 16777216 }
     - { name: "net.ipv4.ip_local_port_range", value: "10000 65535"}
+    - { name: "net.ipv4.netfilter.ip_conntrack_tcp_timeout_time_wait", value: "1"}
     - { name: "net.ipv4.tcp_rmem", value: "4096 87380 16777216" }
     - { name: "net.ipv4.tcp_wmem", value: "4096 16384 16777216" }
+    - { name: "net.ipv4.tcp_fin_timeout", value: "15" }
 
 - name: Update sysctl net settings
   sysctl:
     name: "{{ item.name }}"
     value: "{{ item.value }}"
   with_items:
-    - { name: "net.ipv4.tcp_tw_recycle", value: 1 }
+    - { name: "net.ipv4.tcp_tw_reuse", value: 1 }
   when: ansible_lsb.major_release|int < 18
 
 - name: Update limits.conf limits
@@ -31,4 +33,24 @@
     - "* hard nofile 65535"
     - "* soft nofile 65535"
     - "* hard nproc 16384"
-    - "* hard nproc 16384"
+    - "* soft nproc 16384"
+
+- name: Update sysctl.conf limits
+  lineinfile:
+    dest: /etc/sysctl.conf
+    line: "{{ item }}"
+    state: present
+    insertafter: EOF
+    create: True
+  with_items:
+    - "vm.swappiness = 0"
+  when: linux_config_swap_off
+
+- name: Mount up device by UUID
+  mount:
+    path: /
+    src: LABEL=cloudimg-rootfs
+    fstype: ext4
+    opts: defaults,discard,noatime
+    state: present
+  when: linux_config_noatime
