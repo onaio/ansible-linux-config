@@ -46,12 +46,12 @@
     - "vm.swappiness = 0"
   when: linux_config_swap_off
 
-- name: Set noatime for partitions by UUID
+- name: Set noatime for partitions by src
   mount:
     path: /
-    src: UUID="{{ item }}"
+    src: "{{ item }}"
     fstype: ext4
     opts: rw,noatime
     state: mounted
   with_items:
-    - linux_config_noatime_uuids
+    - linux_config_noatime_srcs
