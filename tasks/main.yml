@@ -46,11 +46,12 @@
     - "vm.swappiness = 0"
   when: linux_config_swap_off
 
-- name: Mount up device by UUID
+- name: Set noatime for partitions by UUID
   mount:
     path: /
-    src: LABEL=cloudimg-rootfs
+    src: UUID="{{ item }}"
     fstype: ext4
-    opts: defaults,discard,noatime
-    state: present
-  when: linux_config_noatime
+    opts: rw,noatime
+    state: mounted
+  with_items:
+    - linux_config_noatime_uuids
