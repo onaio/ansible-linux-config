@@ -1,2 +1,2 @@
 linux_config_swap_off: True
-linux_config_noatime: False
+linux_config_noatime_srcs: []
