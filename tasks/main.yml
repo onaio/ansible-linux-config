@@ -9,7 +9,7 @@
     - { name: "net.core.rmem_max", value: 16777216 }
     - { name: "net.core.wmem_max", value: 16777216 }
     - { name: "net.ipv4.ip_local_port_range", value: "10000 65535"}
-    - { name: "net.ipv4.netfilter.ip_conntrack_tcp_timeout_time_wait", value: "1"}
+    - { name: "net.ipv4.netfilter.nf_conntrack_tcp_timeout_time_wait", value: "1"}
     - { name: "net.ipv4.tcp_rmem", value: "4096 87380 16777216" }
     - { name: "net.ipv4.tcp_wmem", value: "4096 16384 16777216" }
     - { name: "net.ipv4.tcp_fin_timeout", value: "15" }
