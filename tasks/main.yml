@@ -1,8 +1,11 @@
 ---
-- name: Ensure nf_conntrack kernel module is loaded
+- name: Load kernel modules
   modprobe:
-    name: nf_conntrack
+    name: "{{ item }}"
     state: present
+  with_items:
+    - nf_conntrack
+    - ip_conntrack
 
 - name: Update sysctl net settings
   sysctl:
