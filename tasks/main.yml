@@ -20,14 +20,14 @@
     - { name: "net.netfilter.nf_conntrack_tcp_timeout_time_wait", value: "1"}
     - { name: "net.ipv4.tcp_rmem", value: "4096 87380 16777216" }
     - { name: "net.ipv4.tcp_wmem", value: "4096 16384 16777216" }
-    - { name: "net.ipv4.tcp_fin_timeout", value: "15" }
+    - { name: "net.ipv4.tcp_fin_timeout", value: "{{ linux_config_tcp_fin_timeout }}" }
 
 - name: Update sysctl net settings
   sysctl:
     name: "{{ item.name }}"
     value: "{{ item.value }}"
   with_items:
-    - { name: "net.ipv4.tcp_tw_reuse", value: 1 }
+    - { name: "net.ipv4.tcp_tw_reuse", value: "{{ linux_config_tcp_tw_reuse }}" }
   when: ansible_lsb.major_release|int < 18
 
 - name: Update limits.conf limits

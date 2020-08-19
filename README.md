@@ -10,6 +10,10 @@ Options
 
 `linux_config_noatime_srcs`, list, default empty list, disable access time on the set of src mount points to improve IO.
 
+`linux_config_tcp_fin_timeout`, integer, default 15, TCP FIN timeout value in seconds default linux appears to default this to 60, we're defaulting it lower.
+
+`linux_config_tcp_tw_reuse`, boolean as integer, default 1, if non zero allow tcp to reuse sockets in the TIME_WAIT state for new connections.
+
 License
 -------
 

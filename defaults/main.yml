@@ -1,2 +1,4 @@
 linux_config_swap_off: True
 linux_config_noatime_srcs: []
+linux_config_tcp_fin_timeout: 15
+linux_config_tcp_tw_reuse: 1
