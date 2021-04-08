@@ -61,5 +61,4 @@
     fstype: ext4
     opts: rw,noatime
     state: mounted
-  with_items:
-    - linux_config_noatime_srcs
+  with_items: "{{ linux_config_noatime_srcs }}"
