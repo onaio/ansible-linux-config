@@ -12,7 +12,7 @@
     name: "{{ item.name }}"
     value: "{{ item.value }}"
   with_items:
-    - { name: "fs.file-max", value: 65535 }
+    - { name: "fs.file-max", value: "{{ linux_hard_nofile|default(65535) }}" }
     - { name: "net.core.somaxconn", value: 4096 }
     - { name: "net.core.rmem_max", value: 16777216 }
     - { name: "net.core.wmem_max", value: 16777216 }
@@ -38,10 +38,10 @@
     insertafter: EOF
     create: True
   with_items:
-    - "* hard nofile 65535"
-    - "* soft nofile 65535"
-    - "* hard nproc 16384"
-    - "* soft nproc 16384"
+    - "* hard nofile {{ linux_hard_nofile|default(65535) }}"
+    - "* soft nofile {{ linux_soft_nofile|default(65535) }}"
+    - "* hard nproc {{ linux_hard_nproc|default(16384) }}"
+    - "* soft nproc {{ linux_soft_nproc|default(16384) }}"
 
 - name: Update sysctl.conf limits
   lineinfile:
