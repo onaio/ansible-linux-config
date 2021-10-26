@@ -14,6 +14,11 @@ Options
 
 `linux_config_tcp_tw_reuse`, boolean as integer, default 1, if non zero allow tcp to reuse sockets in the TIME_WAIT state for new connections.
 
+`linx_hard_nofile`, integer, default 65535, maximum number of open file descriptors on the linux system, hard limit.
+`linux_soft_nofile`:integer, default 65535, maximum number of open file descriptors on the linux system, soft limit.
+`linux_hard_nproc`, integer, default 16384, maximum allowed number of processors per user, hard limit.
+`linux_soft_nproc`, integer, default 16384, maximum allowed number of processors per user, soft limit.
+
 License
 -------
 

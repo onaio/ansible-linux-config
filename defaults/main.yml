@@ -2,3 +2,7 @@ linux_config_swap_off: True
 linux_config_noatime_srcs: []
 linux_config_tcp_fin_timeout: 15
 linux_config_tcp_tw_reuse: 1
+linx_hard_nofile: 65535
+linux_soft_nofile: 65535
+linux_hard_nproc: 16384
+linux_soft_nproc: 16384
