@@ -1,0 +1,20 @@
+---
+- name: Verify
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Read somaxconn
+      command: sysctl -n net.core.somaxconn
+      register: somaxconn
+      changed_when: false
+
+    - name: Read limits.conf
+      slurp:
+        src: /etc/security/limits.conf
+      register: limits_conf
+
+    - name: Check the settings were applied
+      assert:
+        that:
+          - somaxconn.stdout == "4096"
+          - "'* hard nofile 65535' in (limits_conf.content | b64decode)"
