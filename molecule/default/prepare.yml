@@ -1,0 +1,8 @@
+---
+- name: Prepare
+  hosts: all
+  tasks:
+    - name: Install kmod for modprobe
+      apt:
+        name: kmod
+        update_cache: true
