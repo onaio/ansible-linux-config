@@ -3,6 +3,6 @@
   hosts: all
   tasks:
     - name: Install kmod for modprobe
-      apt:
+      ansible.builtin.apt:
         name: kmod
         update_cache: true
