@@ -48,11 +48,11 @@ jobs:
           python-version: '3.13'
 
       - name: Install test dependencies
-        run: pip3 install "ansible==14.*" "molecule==26.*" "molecule-plugins[docker]==26.*" docker "pytest-testinfra==10.*"
+        run: pip3 install "ansible==14.*" "molecule==26.*" "molecule-plugins[docker]==26.*" docker
 
       - name: Run Molecule tests
         working-directory: "${{ github.repository }}"
-        run: molecule test --all
+        run: molecule test
         env:
           PY_COLORS: '1'
           ANSIBLE_FORCE_COLOR: '1'
