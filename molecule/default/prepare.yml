@@ -1,0 +1,8 @@
+---
+- name: Prepare
+  hosts: all
+  tasks:
+    - name: Install kmod for modprobe
+      ansible.builtin.apt:
+        name: kmod
+        update_cache: true
